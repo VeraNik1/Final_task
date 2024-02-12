@@ -1,0 +1,40 @@
+INFO 2024-02-13 02:15:20,677 autoreload 10312 10752 Watching for file changes with StatReloader
+INFO 2024-02-13 02:15:27,181 autoreload 11212 5380 Watching for file changes with StatReloader
+INFO 2024-02-13 02:15:28,951 views 11212 5272 Index page accessed
+INFO 2024-02-13 02:15:28,967 basehttp 11212 5272 "GET / HTTP/1.1" 200 1503
+WARNING 2024-02-13 02:15:32,334 log 11212 5272 Not Found: /index/
+WARNING 2024-02-13 02:15:32,335 basehttp 11212 5272 "GET /index/ HTTP/1.1" 404 2772
+DEBUG 2024-02-13 02:15:40,265 views 11212 5272 Clothes page accessed
+INFO 2024-02-13 02:15:40,268 basehttp 11212 5272 "GET /clothes/ HTTP/1.1" 200 1507
+DEBUG 2024-02-13 02:15:43,338 views 11212 5272 Footwear page accessed
+INFO 2024-02-13 02:15:43,339 basehttp 11212 5272 "GET /footwear/ HTTP/1.1" 200 1522
+INFO 2024-02-13 02:15:43,507 basehttp 11212 5272 "GET /static/img/boots_01.jpg HTTP/1.1" 200 8825
+INFO 2024-02-13 02:15:43,526 basehttp 11212 10460 "GET /static/img/boots_02.jpg HTTP/1.1" 200 51667
+INFO 2024-02-13 02:15:43,596 basehttp 11212 5764 "GET /static/img/boots_03.jpg HTTP/1.1" 200 40541
+DEBUG 2024-02-13 02:15:56,217 views 11212 8704 Clothes page accessed
+INFO 2024-02-13 02:15:56,218 basehttp 11212 8704 "GET /clothes/ HTTP/1.1" 200 1507
+DEBUG 2024-02-13 02:15:57,491 views 11212 8704 Footwear page accessed
+INFO 2024-02-13 02:15:57,493 basehttp 11212 8704 "GET /footwear/ HTTP/1.1" 200 1522
+INFO 2024-02-13 02:16:33,837 autoreload 11212 5380 C:\Users\Veronika\project\myproject\hw1app\urls.py changed, reloading.
+INFO 2024-02-13 02:16:34,458 autoreload 3700 7040 Watching for file changes with StatReloader
+INFO 2024-02-13 02:16:55,362 autoreload 10312 5608 Watching for file changes with StatReloader
+INFO 2024-02-13 02:16:56,539 views 10312 10496 Index page accessed
+INFO 2024-02-13 02:16:56,545 basehttp 10312 10496 "GET / HTTP/1.1" 200 1503
+WARNING 2024-02-13 02:16:58,576 log 10312 10496 Not Found: /index/
+WARNING 2024-02-13 02:16:58,576 basehttp 10312 10496 "GET /index/ HTTP/1.1" 404 2939
+INFO 2024-02-13 02:18:53,931 autoreload 10312 5608 C:\Users\Veronika\project\myproject\hw1app\urls.py changed, reloading.
+INFO 2024-02-13 02:18:54,530 autoreload 10820 1108 Watching for file changes with StatReloader
+INFO 2024-02-13 02:18:55,649 views 10820 10180 Index page accessed
+INFO 2024-02-13 02:18:55,665 basehttp 10820 10180 "GET / HTTP/1.1" 200 1496
+INFO 2024-02-13 02:18:57,502 views 10820 10180 Index page accessed
+INFO 2024-02-13 02:18:57,503 basehttp 10820 10180 "GET / HTTP/1.1" 200 1496
+INFO 2024-02-13 02:18:58,633 views 10820 10180 Index page accessed
+INFO 2024-02-13 02:18:58,634 basehttp 10820 10180 "GET / HTTP/1.1" 200 1496
+DEBUG 2024-02-13 02:18:59,538 views 10820 10180 Clothes page accessed
+INFO 2024-02-13 02:18:59,540 basehttp 10820 10180 "GET /clothes/ HTTP/1.1" 200 1500
+DEBUG 2024-02-13 02:19:00,969 views 10820 10180 Footwear page accessed
+INFO 2024-02-13 02:19:00,970 basehttp 10820 10180 "GET /footwear/ HTTP/1.1" 200 1515
+INFO 2024-02-13 02:19:15,005 views 10820 10180 Index page accessed
+INFO 2024-02-13 02:19:15,009 basehttp 10820 10180 "GET / HTTP/1.1" 200 1496
+DEBUG 2024-02-13 02:19:17,082 views 10820 10180 Clothes page accessed
+INFO 2024-02-13 02:19:17,083 basehttp 10820 10180 "GET /clothes/ HTTP/1.1" 200 1500
