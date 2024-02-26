@@ -24,7 +24,7 @@ class Command(BaseCommand):
                 product.quantity -= 1
                 product.save()
                 order.total_price = total_price
-                order.save()
                 order.products.add(product)
             else:
                 self.stdout.write(f'product {product.name} is out of stock')
+        order.save()
