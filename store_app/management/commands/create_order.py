@@ -17,7 +17,7 @@ class Command(BaseCommand):
 
         order = Order(customer=user, is_deleted=False)
         total_price = 0
-        for i in range(0, len(product_id)):
+        for i in range(len(product_id)):
             product = Product.objects.filter(pk=product_id[i]).first()
             if product.quantity > 0:
                 total_price += float(product.price)
