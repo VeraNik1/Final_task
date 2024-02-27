@@ -9,4 +9,4 @@ class Command(BaseCommand):
         products = Product.objects.all()
         for item in products:
             if not item.is_deleted:
-                self.stdout.write(f'{item}')
+                self.stdout.write(f'id {item.id} {item}')

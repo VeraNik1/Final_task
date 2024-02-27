@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}User's orders{% endblock %}
+{% block content %}
+<h3>{{ user }}</h3>
+<hr>
+<h4>Товары за последнюю неделю</h4>
+<div class="row row-cols-3 g-4">
+    {% for product in products_for_week.values %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text"><b>{{ product.price }}</b></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<hr>
+<h4>Товары за последний месяц</h4>
+<div class="row row-cols-3 g-4">
+    {% for product in products_for_month.values %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text"><b>{{ product.price }}</b></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<hr>
+<h4>Товары за последний год</h4>
+<div class="row row-cols-3 g-4">
+    {% for product in products_for_year.values %}
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text"><b>{{ product.price }}</b></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -9,4 +9,4 @@ class Command(BaseCommand):
         users = User.objects.all()
         for user in users:
             if not user.is_deleted:
-                self.stdout.write(f'{user}')
+                self.stdout.write(f'id {user.id} {user}')

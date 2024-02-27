@@ -9,4 +9,4 @@ class Command(BaseCommand):
         orders = Order.objects.all()
         for order in orders:
             if not order.is_deleted:
-                self.stdout.write(f'{order}')
+                self.stdout.write(f'id {order.id} - {order}')

@@ -14,7 +14,7 @@ class User(models.Model):
     def __str__(self):
         if self.is_deleted:
             return f'User was deleted'
-        return f'Username: {self.name}, email: {self.email},  phone: {self.phone}, address: {self.address}, is_deleted: {self.is_deleted}'
+        return f'Username: {self.name}, email: {self.email},  phone: {self.phone}, address: {self.address}'
 
 
 class Product(models.Model):

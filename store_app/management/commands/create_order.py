@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
+from django.core.serializers import json
 from store_app.models import User, Product, Order
-
+import json
 
 class Command(BaseCommand):
     help = "Create order"
@@ -17,14 +18,19 @@ class Command(BaseCommand):
 
         order = Order(customer=user, is_deleted=False)
         total_price = 0
-        for pk in range(len(product_id)):
+        for pk in product_id:
             product = Product.objects.filter(pk=pk).first()
             if product.quantity > 0:
                 total_price += float(product.price)
                 product.quantity -= 1
                 product.save()
                 order.total_price = total_price
+                order.save()
                 order.products.add(product)
+
             else:
                 self.stdout.write(f'product {product.name} is out of stock')
-        order.save()
+        if total_price == 0:
+            order.remove()
+
+
