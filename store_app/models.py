@@ -23,6 +23,7 @@ class Product(models.Model):
     description = models.TextField()
     quantity = models.IntegerField()
     is_deleted = BooleanField()
+    image = models.ImageField(upload_to='products/', null=True, blank=True)
 
     def __str__(self):
         if self.is_deleted:

@@ -1,9 +1,9 @@
 from datetime import date, timedelta
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import TemplateView, FormView
-
+from forms import ProductEditForm
 from .models import User, Product, Order
-
+from django.contrib import messages
 
 def index(request):
     return render(request, "store_app/index.html")
@@ -45,3 +45,21 @@ class OrderedProducts(TemplateView):
         context['products_for_month'] = products_for_month
         context['products_for_year'] = products_for_year
         return context
+
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == 'POST':
+
+        form = ProductEditForm(request.POST, request.FILES, instance=product)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Данные успешно изменены!')
+            return redirect('get_product', product_id=product.id)
+        else:
+            messages.error(request, 'Форма заполнена неверно!')
+            return render(request, 'store_app/edit_form.html', context={'form': form})
+    else:
+        form = ProductEditForm(instance=product)
+
+    return render(request, 'store_app/edit_form.html', context={'form': form})
