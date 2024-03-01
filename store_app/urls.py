@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ClientOrders, OrderedProducts, index, edit_product
+from .views import *
 
 urlpatterns = [
     path('orders/<int:user_id>', ClientOrders.as_view(), name='client_statistics'),
