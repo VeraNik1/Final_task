@@ -47,7 +47,7 @@ class OrderedProducts(TemplateView):
         return context
 
 
-def edit_product(request, product_id):
+def edit_product(request, product_id=None):
     product = get_object_or_404(Product, id=product_id)
     if request.method == 'POST':
 
