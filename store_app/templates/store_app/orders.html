@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Заказы{% endblock %}
+
+{% block content %}
+    <h1>Заказы</h1>
+    {% for order in orders %}
+        <h2><a href="{% url 'get_order_view' order.id %}">Заказ #{{ order.id }}</a>
+            от {{ order.order_date }}</h2>
+        <table border="1">
+            <tr>
+                <th>Клиент</th>
+                <td>
+                    <a href="{% url 'get_user_view' order.customer.id %}">{{ order.customer.name }}</a>
+                    {% if order.customer.is_deleted %}(удален){% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Товары</th>
+                <td>
+                    <ul>
+                        <table border="1">
+                            <tr>
+                                <th>Название</th>
+                                <th>Цена</th>
+                                <th>шт.</th>
+                            </tr>
+
+                        {% for order_item in order.products.all %}
+                            <tr>
+                                <th>
+                                    <a href="{% url 'get_product_view' order_item.id %}">
+                                {{  order_item.name }}</a>
+                                    {% if order_item.is_deleted %}(удален){% endif %}
+                                </th>
+                                <th>{{ order_item.price }}$</th>
+                                <th>{{ order_item.quantity }}</th>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                    </ul>
+                </td>
+
+            </tr>
+            <tr>
+                <th>Сумма</th>
+                <td>{{ order.total_price }}$</td>
+            </tr>
+        </table>
+    {% endfor %}
+{% endblock %}

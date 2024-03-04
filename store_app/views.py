@@ -5,6 +5,8 @@ from .forms import ProductEditForm
 from .models import User, Product, Order
 from django.contrib import messages
 
+
+
 def index(request):
     return render(request, "store_app/index.html")
 
@@ -64,3 +66,38 @@ def edit_product(request, product_id=None):
         form = ProductEditForm(instance=product)
     return render(request, 'store_app/edit_form.html', context={'form': form})
 
+
+def users_view(request):
+    clients_ = User.objects.all().filter(is_deleted=False)
+    return render(request, 'store_app/users.html', {'clients': clients_})
+
+
+def products_view(request):
+    products_ = Product.objects.all().filter(is_deleted=False)
+    return render(request, 'store_app/products.html', {'products': products_})
+
+
+def orders_view(request):
+    orders = Order.objects.filter(is_deleted=False)
+    context = {'orders': orders}
+    return render(request, 'store_app/orders.html', context)
+
+
+
+def get_order_view(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    context = {'order': order}
+    return render(request, 'store_app/order.html', context=context)
+
+
+
+def get_product_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    context = {'product': product}
+    return render(request, 'store_app/product.html', context=context)
+
+
+def get_user_view(request, user_id):
+    client = get_object_or_404(User, id=user_id)
+    context = {'client': client}
+    return render(request, 'store_app/user.html', context=context)

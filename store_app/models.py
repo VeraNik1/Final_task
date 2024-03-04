@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models import BooleanField
+from django.core.validators import MinValueValidator
+from django.core.exceptions import ValidationError
 
 
 class User(models.Model):
@@ -9,7 +11,7 @@ class User(models.Model):
     address = models.CharField(max_length=150)
     reg_date = models.DateField(auto_now_add=True)
     password = models.CharField(max_length=25)
-    is_deleted = BooleanField()
+    is_deleted = BooleanField(default=False)
 
     def __str__(self):
         if self.is_deleted:
@@ -21,8 +23,8 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.TextField()
-    quantity = models.IntegerField()
-    is_deleted = BooleanField()
+    quantity = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    is_deleted = BooleanField(default=False)
     image = models.ImageField(upload_to='products/', null=True, blank=True)
 
     def __str__(self):
@@ -37,7 +39,7 @@ class Order(models.Model):
     products = models.ManyToManyField(Product)
     order_date = models.DateField(auto_now_add=True)
     total_price = models.DecimalField(max_digits=8, decimal_places=2)
-    is_deleted = BooleanField()
+    is_deleted = BooleanField(default=False)
 
     def __str__(self):
         if self.is_deleted:
