@@ -20,7 +20,7 @@ class ClientOrders(TemplateView):
         orders = Order.objects.filter(customer=user).filter(is_deleted=False).order_by('id')
         context['user'] = user
         context['orders'] = orders
-        return context
+        return context`1qq
 
 
 class OrderedProducts(TemplateView):

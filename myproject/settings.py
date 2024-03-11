@@ -29,7 +29,6 @@ CSRF_COOKIE_SECURE = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '192.168.1.47',
-    'Veranik17879.pythonanywhere.com',
 ]
 
 # Application definition
@@ -78,20 +77,18 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Veranik17879$default',
-        'USER': 'Veranik17879',
-        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
-        'HOST': 'Veranik17879.mysql.pythonanywhere-services.com',
-        'OPTIONS': {
-            'init_command': "SET NAMES 'utf8mb4';SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8mb4',
+"default": {
+"ENGINE": "django.db.backends.mysql",
+"NAME": os.getenv("MYSQL_DBNAME"),
+"USER": os.getenv("MYSQL_USER"),
+"PASSWORD": os.getenv("MYSQL_PASSWORD"),
+"HOST": os.getenv("MYSQL_HOST"),
+"OPTIONS": {
+"init_command": "SET NAMES 'utf8mb4';SET sql_mode = 'STRICT_TRANS_TABLES'",
+"charset": "utf8mb4",
 },
-
-
-        }
-    }
+}
+}
 
 
 # Password validation
