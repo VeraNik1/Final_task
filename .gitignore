@@ -86,9 +86,3 @@ local_settings.py
 
 .env
 db.sqlite3
-
-/media/
-/static/
-*.sqlite3
-*.log
-*.pyc

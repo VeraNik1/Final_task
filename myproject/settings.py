@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
+
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +30,7 @@ CSRF_COOKIE_SECURE = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '192.168.1.47',
+    'VeraNikolaevna.pythonanywhere.com'
 ]
 
 # Application definition
@@ -40,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'store_app',
+    'recipe_app',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,19 +79,18 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-"default": {
-"ENGINE": "django.db.backends.mysql",
-"NAME": os.getenv("MYSQL_DBNAME"),
-"USER": os.getenv("MYSQL_USER"),
-"PASSWORD": os.getenv("MYSQL_PASSWORD"),
-"HOST": os.getenv("MYSQL_HOST"),
-"OPTIONS": {
-"init_command": "SET NAMES 'utf8mb4';SET sql_mode = 'STRICT_TRANS_TABLES'",
-"charset": "utf8mb4",
-},
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'VeraNikolaevna$default',
+        'USER': 'VeraNikolaevna',
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': 'VeraNikolaevna.mysql.pythonanywhere-services.com',
+        'OPTIONS': {
+            'init_command': "SET NAMES 'utf8mb4'; SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8mb4',
+        },
+    }
 }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -124,9 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-STATIC_ROOT = BASE_DIR / 'static/'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -137,33 +137,33 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
         'verbose': {
             'format': '{levelname} {asctime} {module} {process} {thread} {message}',
             'style': '{',
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
         },
     },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose',  # добавлен параметр formatter
+            'formatter': 'verbose',
         },
-        'file': {
+        'log_recipeapp': {
             'class': 'logging.FileHandler',
-            'filename': 'django_hw1.log',
-            'formatter': 'verbose',  # добавлен параметр formatter
+            'filename': './log/site.log',  # 'filename': '.log/django.log'
+            'encoding': 'utf-8',
+            'formatter': 'verbose',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console', 'log_recipeapp'],
             'level': 'INFO',
         },
-
-        'hw1app': {
-            'handlers': ['console', 'file'],
+        'recipeapp': {
+            'handlers': ['console', 'log_recipeapp'],  # 'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': True,
         },
