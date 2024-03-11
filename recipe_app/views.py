@@ -13,7 +13,6 @@ from .models import Recipe
 
 logger = logging.getLogger(__name__)
 
-
 def index(request):
     return render(request, 'recipe_app/index.html')
 
@@ -95,13 +94,13 @@ def delete_recipe(request, recipe_id):  # to delete recipe
 
 
 @login_required  # for watching the current user recipes user needs to be authorized
-def show_all_my_recipe(request):  # to show all recipes of the current user
+def show_all_my_recipes(request):  # to show all recipes of the current user
     clear_recipes = Recipe.objects.filter(author_id=request.user.id)
     logger.info(f'Recipes of {request.user=}  have been got successfully!')
     return render(request, 'recipe_app/show_all_my_recipe.html', {'clear_recipes': clear_recipes, 'user': request.user})
 
 
-def show_five_recipe(request):  # to show 5 random recipes
+def show_five_recipes(request):  # to show 5 random recipes
     n = None
     my_ids = Recipe.objects.values_list('id', flat=True)
     my_ids = list(my_ids)
@@ -119,7 +118,7 @@ def show_five_recipe(request):  # to show 5 random recipes
                   {'random_recipe': random_recipe, 'message': f'{n} random recipes have been found'})
 
 
-def show_full_recipe(request, recipe_id):  # show 1 recipe by id
+def show_the_recipe(request, recipe_id):  # show 1 recipe by id
     recipe = get_object_or_404(Recipe, pk=recipe_id)
     logger.info(f'Recipe with ID:{recipe_id=} have been found: {recipe=}')
     return render(request, 'recipe_app/show_full_recipe.html', {'recipe': recipe})

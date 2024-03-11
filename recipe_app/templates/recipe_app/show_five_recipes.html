@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Random recipes{% endblock %}
+{% block content %}
+    <h3 class="main_title">{{ message }}</h3>
+    {% csrf_token %}
+
+    {% if random_recipe %}
+        <table class="all_recipes">
+            <tr class="five_recipes_in_row">
+                {% for recipe in random_recipe %}
+                <td>
+                    <a class="five_recipes_link" href="{% url 'show_full_recipe' recipe.id %}">{{ recipe.name }}<br><br>
+                        <img class="recipe_mini_image" src="{{ recipe.img.url }}" alt="{{ recipe.name }}"></a>
+                    {{ recipe.get_summary }}
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+    {% else %}
+        <p class="main_text">Sorry, we couldn't find any recipes at the moment.<br></p>
+        <p class="main_text">Please come back later or <a href="{% url 'add_recipe' %}">add</a> your first recipe.</p>
+    {% endif %}
+{% endblock %}
