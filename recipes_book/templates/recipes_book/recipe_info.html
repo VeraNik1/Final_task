@@ -1,0 +1,31 @@
+{% extends "main/main_template.html" %}
+{% load md_view %}
+
+{% block title %}Рецепт: {{ recipe.title }}{% endblock title %}
+
+{% block content %}
+    <p class="h1 text-center">{{ recipe.title }}</p>
+    {% if recipe.image %}
+        <picture>
+            <img
+                src="/media/{{ recipe.image }}"
+                class="img-fluid rounded mx-auto d-block"
+                alt="{{ recipe.title }}"
+                style="display: block; width: auto; max-height: 400px;"
+            />
+        </picture>
+    {% endif %}
+    <p class="h3 text-start">Описание:</p>
+    {{ recipe.description|markdown }}
+    <p class="h3 text-start">Продукты:</p>
+    {{ recipe.products|markdown }}
+    <p class="h3 text-start">Шаги приготовления:</p>
+    {{ recipe.steps|markdown }}
+    <hr>
+    {% if user.is_authenticated %}
+        {% if recipe.author.id == user.id %}
+            <p class="text-end"><a href="{{ recipe.get_absolute_url }}edit/">Редактирование</a></p>
+            <p class="text-end"><a href="{{ recipe.get_absolute_url }}delete/">Удаление</a></p>        
+        {% endif %}
+    {% endif %}
+{% endblock content %}

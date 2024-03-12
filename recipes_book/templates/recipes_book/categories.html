@@ -1,0 +1,11 @@
+{% extends "main/main_template.html" %}
+{% load md_view %}
+
+{% block title %}Список категорий рецептов{% endblock title %}
+
+{% block content %}
+    <p class="h1 text-center mt-5">На сайте есть следующие категории рецептов</p>
+    {% for category in categories %}
+        <p class="text-center"><a href="{{ category.get_absolute_url }}" class="btn btn-light my-1" role="button" style="width: 50%;">{{ category.name }}</a></p>
+    {% endfor %}
+{% endblock content %}

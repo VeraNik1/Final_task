@@ -1,0 +1,29 @@
+{% extends "main/main_template.html" %}
+{% load md_view %}
+
+{% block title %}Рецепты категории {{ category.name }}{% endblock title %}
+
+{% block content %}
+    <p class="h1 text-center mt-5">Рецепты категории {{ category.name }}</p>
+    {% if not recipes %}
+        <p class="h2 text-center mt-5">К сожалению рецептов данной категории ещё нет в базе</p>
+    {% endif %}
+    {% for recipe in recipes %}
+        <div class="card mb-3">
+            {% if recipe.image %}
+                <a href={{ recipe.get_absolute_url }}>
+                    <img src="/media/{{ recipe.image }}" class="card-img-top rounded mx-auto d-block" alt="{{ recipe.title }}" 
+                    style="display: block; width: auto; max-height: 300px;">
+                    {% comment %} style="height: 200px; width: 200px;"> {% endcomment %}
+                </a>
+            {% endif %}
+            <div class="card-body">
+                <a href={{ recipe.get_absolute_url }}>
+                    <h5 class="card-title">{{ recipe.title }}</h5>
+                </a>
+                <p class="card-text">{{ recipe.description|markdown }}</p>
+                <p class="card-text text-end"><small class="text-muted">Автор: {{ recipe.author }}, от {{ recipe.update_date }}</small></p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
