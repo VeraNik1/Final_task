@@ -63,8 +63,8 @@ def add_recipe(request):
             recipe.category.set(category)
             if image:
                 fs = FileSystemStorage(location=settings.MEDIA_ROOT / 'photo')
-                fs.save(f"{recipe.id}.{image.name.split(".")[-1]}", image)
-                recipe.image = f"photo/{recipe.id}.{image.name.split(".")[-1]}"
+                fs.save(f"{recipe.id}.{image.name.split('.')[-1]}", image)
+                recipe.image = f"photo/{recipe.id}.{image.name.split('.')[-1]}"
             recipe.save()
             logger.info(f"Рецепт сохранили by {author}")
             return redirect('home_page')
@@ -96,8 +96,8 @@ def edit_recipe(request, id: int):
                 fs = FileSystemStorage(location=settings.MEDIA_ROOT / 'photo')
                 if recipe.image:
                     fs.delete(str(recipe.image).split('/')[-1])
-                fs.save(f"{recipe.id}.{image.name.split(".")[-1]}", image)
-                recipe.image = f"photo/{recipe.id}.{image.name.split(".")[-1]}"
+                fs.save(f"{recipe.id}.{image.name.split('.')[-1]}", image)
+                recipe.image = f"photo/{recipe.id}.{image.name.split('.')[-1]}"
             recipe.save()
             logger.info(f"Рецепт обновил by {recipe.author}")
             return redirect('home_page')
